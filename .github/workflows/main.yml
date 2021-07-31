@@ -1,0 +1,25 @@
+name: Unit tests
+
+on:
+  push:
+    branches: [ main ]
+    
+jobs:
+  build-run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+        run: |
+          python3 -m pip install --upgrade pip
+          pip install -r requirements.txt
+      - name: Makefile
+        run:
+          make
+      - name: Run Unit Tests
+        cd tests
+        for f in *.py; do python3 "$f"; done
+        
