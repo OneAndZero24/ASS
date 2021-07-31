@@ -1,5 +1,6 @@
-from ..Parser.parser import Parser
-from ..Parser.image_parser import ImageParser
+import setup
+from Parser.parser_baseclass import Parser
+from Parser.image_parser import ImageParser
 
 prs = Parser()  #test o chuj chodzi z polimorfizmem potem usune
 iprs = ImageParser((256, 256))
