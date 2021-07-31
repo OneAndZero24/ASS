@@ -1,5 +1,4 @@
 import ctypes
-
 shared_lib = None
 
 def load_shared_library():
