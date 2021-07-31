@@ -21,6 +21,6 @@ jobs:
           make
       - name: Run Unit Tests
         run: |
-        cd tests
-        for f in *.py; do python3 "$f"; done
+          cd tests
+          for f in *.py; do python3 "$f"; done
         
