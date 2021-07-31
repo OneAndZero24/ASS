@@ -1,6 +1,6 @@
 import numpy as np
 from PIL import Image
-from parser_baseclass import Parser
+from .parser_baseclass import Parser
 
 class ImageParser(Parser):
     def __init__(self, size):
