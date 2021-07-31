@@ -7,7 +7,9 @@ def load_shared_library():
     print(path)
     return ctypes.CDLL(path)
 
-def get_file_type(path, shared_lib):
+def get_file_type(path):
+    global shared_lib
+    
     if not shared_lib:
         shared_lib = load_shared_library()
 
@@ -18,7 +20,9 @@ def get_file_type(path, shared_lib):
     path = path.encode('utf-8')
     return c_get_file_type(path).decode('utf-8')
 
-def get_last_file_access(path, shared_lib):
+def get_last_file_access(path):
+    global shared_lib
+    
     if not shared_lib:
         shared_lib = load_shared_library()
 
@@ -29,7 +33,9 @@ def get_last_file_access(path, shared_lib):
     path = path.encode('utf-8')
     return c_get_last_file_access(path).decode('utf-8')
 
-def get_last_status_change(path, shared_lib):
+def get_last_status_change(path):
+    global shared_lib
+    
     if not shared_lib:
         shared_lib = load_shared_library()
 
@@ -40,7 +46,9 @@ def get_last_status_change(path, shared_lib):
     path = path.encode('utf-8')
     return c_get_last_status_change(path).decode('utf-8')
 
-def get_last_file_modification(path, shared_lib):
+def get_last_file_modification(path):
+    global shared_lib
+    
     if not shared_lib:
         shared_lib = load_shared_library()
 
@@ -51,7 +59,9 @@ def get_last_file_modification(path, shared_lib):
     path = path.encode('utf-8')
     return c_get_last_file_modification(path).decode('utf-8')
 
-def get_file_size(path, shared_lib):    #Size in bytes
+def get_file_size(path):    #Size in bytes
+    global shared_lib
+    
     if not shared_lib:
         shared_lib = load_shared_library()
 
