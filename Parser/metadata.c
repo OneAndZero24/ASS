@@ -33,7 +33,7 @@ const char *getFileType(const char *path){
         return "unknown";
 }
 
-const char *getLastStatusChange(const char *path){
+long long getLastStatusChange(const char *path){
 
     struct stat buf;
 
@@ -42,10 +42,10 @@ const char *getLastStatusChange(const char *path){
         exit(EXIT_FAILURE);
     }
 
-    return ctime(&buf.st_ctime);
+    return (long long)buf.st_ctime;
 }
 
-const char *getLastFileAccess(const char *path){
+long long getLastFileAccess(const char *path){
 
     struct stat buf;
 
@@ -54,10 +54,10 @@ const char *getLastFileAccess(const char *path){
         exit(EXIT_FAILURE);
     }
 
-    return ctime(&buf.st_atime);
+    return (long long)buf.st_atime;
 }
 
-const char *getLastFileModification(const char *path){
+long long getLastFileModification(const char *path){
 
     struct stat buf;
 
@@ -66,7 +66,7 @@ const char *getLastFileModification(const char *path){
         exit(EXIT_FAILURE);
     }
 
-    return ctime(&buf.st_mtime);
+    return (long long)buf.st_mtime;
 }
 
 long long getFileSize(const char *path){
