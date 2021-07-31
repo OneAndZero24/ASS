@@ -58,7 +58,7 @@ def get_st_mtime(path): # last modification time
     path = path.encode('utf-8')
     return c_get_st_mtime(path)
 
-def get_st_size(path):    #size in bytes
+def get_st_size(path):    # size in bytes
     global shared_lib
     
     if not shared_lib:
