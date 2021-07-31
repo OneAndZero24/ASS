@@ -1,7 +1,7 @@
-from PIL import Image
 import numpy as np
+from PIL import Image
 
-class ImgParser:
+class ImageParser:
     def __init__(self):
         pass
         
@@ -10,4 +10,5 @@ class ImgParser:
         with Image.open(path).convert("RGB") as img:
             img = img.resize(size)
             arr = np.array(img)
-        return arr
+            img.show()
+        return arr.flatten()
