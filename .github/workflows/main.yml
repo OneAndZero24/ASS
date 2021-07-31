@@ -17,9 +17,10 @@ jobs:
           python3 -m pip install --upgrade pip
           pip install -r requirements.txt
       - name: Makefile
-        run:
+        run: |
           make
       - name: Run Unit Tests
+        run: |
         cd tests
         for f in *.py; do python3 "$f"; done
         
