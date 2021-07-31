@@ -5,5 +5,5 @@ class Parser(ABC):
         pass
 
     @abstractmethod
-    def parser(self,directory):
+    def parse(self, path):
         pass
