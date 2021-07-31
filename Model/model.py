@@ -1,6 +1,6 @@
-from abc import ABC, abstractmethod
+from abc import ABCMeta, abstractmethod
 
-class Model(ABC):
+class Model(metaclass=ABCMeta):
     
     @abstractmethod
     def run(self):

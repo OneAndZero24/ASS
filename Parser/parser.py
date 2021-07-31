@@ -1,6 +1,6 @@
-from abc import ABC, abstractmethod
+from abc import ABCMeta, abstractmethod
 
-class Parser(ABC):
+class Parser(metaclass=ABCMeta):
     @abstractmethod
     def parse(self, path):
         pass
