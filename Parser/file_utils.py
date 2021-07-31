@@ -4,7 +4,6 @@ shared_lib = None
 def load_shared_library():
     path = __file__
     path = path.replace('file_utils.py', 'metadata.so')
-    print(path)
     return ctypes.CDLL(path)
 
 def get_file_type(path):
