@@ -71,14 +71,14 @@ def get_st_size(path):    #size in bytes
     path = path.encode('utf-8')
     return c_get_st_size(path)
 
-def get_file_name(path):
+def get_filename(path):
     name = path.split('/')[-1]
     if '.' in name:
         return name.split('.')[0]
     else:
         return name
 
-def get_extension_name(path):
+def get_extension(path):
     name = path.split('/')[-1]
     if '.' in name:
         return name.split('.')[1]
