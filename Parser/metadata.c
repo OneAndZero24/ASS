@@ -4,16 +4,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-const char *getFileType(const char *path) {
+const char *getFileType(const char *path){
 
     struct stat buf;
 
-    if( stat(path, &buf) == -1 ) {
+    if(stat(path, &buf) == -1){
         perror("stat");
         exit(EXIT_FAILURE);
     }
 
-    int type = buf.st_mode & S_IFMT;
+    int type = buf.st_mode&S_IFMT;
 
     if(type == S_IFBLK)
         return "block device";
@@ -33,11 +33,11 @@ const char *getFileType(const char *path) {
         return "unknown";
 }
 
-const char *getLastStatusChange(const char *path) {
+const char *getLastStatusChange(const char *path){
 
     struct stat buf;
 
-    if( stat(path, &buf) == -1 ) {
+    if(stat(path, &buf) == -1){
         perror("stat");
         exit(EXIT_FAILURE);
     }
@@ -45,11 +45,11 @@ const char *getLastStatusChange(const char *path) {
     return ctime(&buf.st_ctime);
 }
 
-const char *getLastFileAccess(const char *path) {
+const char *getLastFileAccess(const char *path){
 
     struct stat buf;
 
-    if( stat(path, &buf) == -1 ) {
+    if(stat(path, &buf) == -1){
         perror("stat");
         exit(EXIT_FAILURE);
     }
@@ -57,11 +57,11 @@ const char *getLastFileAccess(const char *path) {
     return ctime(&buf.st_atime);
 }
 
-const char *getLastFileModification(const char *path) {
+const char *getLastFileModification(const char *path){
 
     struct stat buf;
 
-    if( stat(path, &buf) == -1 ) {
+    if(stat(path, &buf) == -1){
         perror("stat");
         exit(EXIT_FAILURE);
     }
@@ -69,11 +69,11 @@ const char *getLastFileModification(const char *path) {
     return ctime(&buf.st_mtime);
 }
 
-long long getFileSize(const char *path) {
+long long getFileSize(const char *path){
 
     struct stat buf;
 
-    if( stat(path, &buf) == -1 ) {
+    if(stat(path, &buf) == -1){
         perror("stat");
         exit(EXIT_FAILURE);
     }
