@@ -10,8 +10,8 @@ last_access = get_st_atime(path)
 last_status_change = get_st_ctime(path)
 last_modification = get_st_mtime(path)
 
-name = get_file_name(path)
-extension = get_extension_name(path)
+name = get_filename(path)
+extension = get_extension(path)
 
 assert size == 473831
 assert type == 'regular file'
