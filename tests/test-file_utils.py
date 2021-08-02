@@ -1,5 +1,13 @@
 import setup
 from Parser.file_utils import *
+from PIL import Image
+
+
+def display_dict(dictionary):
+    """displays dictionary as list with 2 columns for keys and values"""
+
+    for key, value in dictionary.items():
+        print(str(key) + ': \t' + str(value))
 
 path = '../data/Lenna.png'
 
@@ -13,11 +21,24 @@ last_modification = get_st_mtime(path)
 name = get_filename(path)
 extension = get_extension(path)
 
+
+# basic assertions to verify correctnes of functions derived from metadata.c
 assert size == 473831
 assert type == 'regular file'
-#assert last_access == 1627678222
-#assert last_status_change == 1627675064
-#assert last_modification == 1627675064
-
 assert name == 'Lenna'
 assert extension == 'png'
+
+
+path = '../data/DSCN0010.jpg'
+
+# function to obtain various image metadata
+image = Image.open(path)
+img, gps, offset = get_image_metadata(image)
+
+del offset['MakerNote']
+print("\n=====Image metadata:=====\n")
+display_dict(img)
+print("\n=====GPS metadata:=====\n")
+display_dict(gps)
+print('\n====ExifOffset metadata:=====\n')
+display_dict(offset)
