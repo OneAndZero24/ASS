@@ -2,6 +2,7 @@ import setup
 from Parser.file_utils import *
 from PIL import Image
 
+print("\nTEST" + __file__)
 
 def display_dict(dictionary):
     """displays dictionary as list with 2 columns for keys and values"""
