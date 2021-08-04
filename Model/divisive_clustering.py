@@ -6,7 +6,7 @@ def swap(a, b):
 
 #Tree-like structure that output hierarchy is stored in
 class Group:
-    def __init__(self, values=None):
+    def __init__(self, values):
         self.values = values    #Points inside this group
         self.subL = None        #
         self.subR = None        #Subgroups
@@ -46,13 +46,14 @@ def centroid(v):
 #It seems reasonably good, isn't as simple as heuristics or overly complex
 #Will improve function and think about moving to sets to represent groups ;) 
 def naive_split(group, d=d_euclid):
-    groupb = []     #Detached group
+    groupa = group.copy()  #Old group copy
+    groupb = []            #Detached group
 
     #Finding furthest point from centroid
-    cA = centroid(group)    #First group centroid
-    maxd = 0.0      #Max distance from centroid
-    maxp = None     #Furthest point
-    for p in group:
+    cA = centroid(groupa)    #First group centroid
+    maxd = 0.0           #Max distance from centroid
+    maxp = groupa[0]     #Furthest point
+    for p in groupa:
         cd = d(p, cA)
         if(maxd < cd):
             maxd = cd
@@ -61,30 +62,30 @@ def naive_split(group, d=d_euclid):
     #Create detached group
     cB = maxp           #Detached group centroid
     groupb.append(cB)
-    group.remove(cB)
+    groupa.remove(cB)
 
     #Move points to new group if they are closer to it than to old one
-    while True:
-        cA = centroid(group)
+    while len(groupa) > 1:
+        cA = centroid(groupa)
         cB = centroid(groupb)
 
         #Find nearest to B
         mind = maxd
-        minp = None
-        for p in group:
+        minp = groupa[0]
+        for p in groupa:
             cd = d(p, cB)
             if(mind > cd):
                 mind = cd
                 minp = p
 
         #Check if it's closer to B than to A
-        if(cd < d(minp, cA)):
+        if(mind < d(minp, cA)):
             groupb.append(minp)
-            group.remove(cA)
+            groupa.remove(minp)
         else:
             break   #Stop
     
-    return group, groupb
+    return groupa, groupb
 
 #Simple Divisive Hierarchical Clustering model for tests/learning
 class DHC(Model):
@@ -100,11 +101,11 @@ class DHC(Model):
             G.subR = Group(vR)
             self.division(G.subL, level+1)
             self.division(G.subR, level+1)
-
+    
     def run(self, data, max_depth):
         self.data = data                #Data
         self.max_depth = max_depth      #Maximum depth
-        G = Group(data)
+        G = Group(self.data)
         self.division(G, 0)
         return G
 

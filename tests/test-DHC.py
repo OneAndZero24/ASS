@@ -1,11 +1,25 @@
-import matplotlib.pyplot as plt
 import setup
-from Model.divisive_clustering import DHC, Group
+import random
 
-#data = [[0.3, 0.4], [1.0, 0.2], [0.1, 0.5], [0.0, 0.9], [0.8, 0.7], [0.3, 0.2], [0.5, 0.7], [0.8, 0.6], [0.2, 0.4], [0.1, 0.3]]
+from Model.divisive_clustering import Group
+from Model.divisive_clustering import DHC
 
-#plt.scatter(*zip(*data))
-#plt.show()
+def parse(G, level=0):
+    print(level, G.values)
+    if G.subL:
+        parse(G.subL, level+1)
+    if G.subR:
+        parse(G.subR, level+1)
+
+data = []
+
+#Random points on [0,1]x[0,1] plane
+for i in range(10):
+    data.append([round(random.uniform(0,1), 2), round(random.uniform(0,1), 2)])
+
+print(data)
 
 M = DHC()
-print(M.run(data, 4))
+G = M.run(data, 4)
+
+parse(G)
