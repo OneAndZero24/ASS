@@ -36,7 +36,8 @@ path = '../data/DSCN0010.jpg'
 image = Image.open(path)
 img, gps, offset = get_image_metadata(image)
 
-del offset['MakerNote']
+# mostly encoding for MakerNote is based on reverse engineering 
+del offset['MakerNote'] 
 print("\n=====Image metadata:=====\n")
 display_dict(img)
 print("\n=====GPS metadata:=====\n")
